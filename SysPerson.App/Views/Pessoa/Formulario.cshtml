@@ -1,0 +1,92 @@
+﻿@model SysPerson.App.Models.Pessoa.PessoaFormularioViewModel
+@using SysPerson.App.Helpers;
+
+@{
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="material-icons">home</i> <b>Início</b>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index", "Pessoa")">
+                    <i class="material-icons">list</i> <b>Pessoas</b>
+                </a>
+            </li>
+            <li>
+                <i class="material-icons">assignment</i> <b>Cadastro</b>
+            </li>
+        </ol>
+        <div class="card">
+            @using (Html.BeginForm(Model.NovoCadastro ? "Adicionar" : "Alterar", "Pessoa", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                <div class="header">
+                    <h2>
+                        @Html.Voltar("/Pessoa/Index") Pessoa
+                    </h2>
+                    <div class="hidden-sm hidden-xs">
+                        <small><b>Cadastre pessoas para que possa utilizar no sistema.</b></small>
+                        <ul class="header-dropdown m-r--5">
+                            @if (!Model.NovoCadastro)
+                            {
+                                <li>
+                                    <button type='button' onclick="showModal('@Url.Action("Excluir", "Pessoa", new { id = Model.Id, index = false })')" class='btn btn-lg bg-red'>EXCLUIR</button>
+                                </li>
+                            }
+                            <li>
+                                @Html.Salvar()
+                            </li>
+                            @if (Model.NovoCadastro)
+                            {
+                                <li>
+                                    @Html.SalvarNovo()
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="hidden-lg hidden-md">
+                        <small><b>Cadastre pessoas.</b></small>
+                        <ul class="header-dropdown m-r--5">
+                            <li>
+                                @Html.Salvar()
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span><b>- Campos marcados com <span class="obrigatorio"></span> são obrigatórios.</b></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col col-lg-6 col-md-6 col-sm-9 col-xs-12">
+                            <label for="BandeiraId" class="obrigatorio">Bandeira</label>
+                            <div class="form-group form-float">
+                                @Html.DropDownListFor(model => model.BandeiraId, Model.SelectListItemListaBandeira, "Selecione..", new { @class = "form-control consulta", @Id = "BandeiraId" })
+                                <span class="informacao">Selecione a bandeira de cartão que deseja cadastrar.</span>
+                            </div>
+                        </div>
+                        <div class="col col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                            <label for="Ativa"></label>
+                            <div class="demo-checkbox padding-label-checkbox-modal">
+                                <input type="checkbox" id="Ativa" checked="@Model.Ativa" value="true" name="Ativa" class="filled-in chk-col-orange">
+                                <label for="Ativa">
+                                    Ativa
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -48,7 +48,18 @@ namespace SysPerson.App.Controllers
         {
             try
             {
-                return View();
+                var pessoa = new PessoaViewModel();
+
+                pessoa.Id = 1;
+                pessoa.CpfCnpj = "085.891.079-90";
+                pessoa.NomeRazaoSocial = "Leonardo Augusto Zils";
+                pessoa.TipoPessoa = "Pessoa Física";
+                pessoa.Nacional = "Sim";
+                pessoa.Porte = "OUTROS";
+                pessoa.Ativo = true;
+                pessoa.PermiteExcluir = true;
+
+                return View("Formulario", pessoa);
             }
             catch (Exception ex)
             {

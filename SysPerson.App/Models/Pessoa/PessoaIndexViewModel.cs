@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SysPerson.App.Models
+namespace SysPerson.App.Models.Pessoa
 {
     public class PessoaViewModelIndex
     {

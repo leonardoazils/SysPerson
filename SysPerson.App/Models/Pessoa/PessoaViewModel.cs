@@ -1,8 +1,10 @@
-﻿namespace SysPerson.App.Models
+﻿using System;
+
+namespace SysPerson.App.Models.Pessoa
 {
     public class PessoaViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string TipoPessoa { get; set; }
 
