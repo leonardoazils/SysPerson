@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>SysPerson</title>
+    <link rel="icon" href="~/Content/Imagens/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="~/Content/Layout/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/material.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/waitMe.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Layout/waves.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/all-themes.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Layout/toastr.css" rel="stylesheet" type="text/css" />
+    @RenderSection("estilos", required: false)
+</head>
+<body class="theme-red">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Carregando...</p>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    @RenderPage("_Header.cshtml")
+    <section>
+        <aside id="leftsidebar" class="sidebar">
+            @RenderPage("_Menu.cshtml")
+        </aside>
+        <section class="content">
+            <div class="container-fluid">
+                @RenderBody()
+
+                <input type="hidden" id="success"
+                       value="@TempData["success"]" />
+                <input type="hidden" id="info"
+                       value="@TempData["info"]" />
+                <input type="hidden" id="warning"
+                       value="@TempData["warning"]" />
+                <input type="hidden" id="error"
+                       value="@TempData["error"]" />
+            </div>
+        </section>
+    </section>
+    <script src="~/Scripts/Layout/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/jquery-1.12.4.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/jquery.slimscroll.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/autosize.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/waitMe.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/waves.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/admin.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/demo.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/toastr.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/mensagem.js" type="text/javascript"></script>
+    <script src="~/Scripts/Layout/menu.js" type="text/javascript"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
