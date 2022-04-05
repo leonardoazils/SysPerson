@@ -1,0 +1,142 @@
+﻿@model SysPerson.App.Models.PessoaViewModelIndex
+@using SysPerson.App.Helpers;
+@{
+    Layout = "~/Views/Shared/_Main.cshtml";
+}
+
+<div class="row clearfix">
+    <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="material-icons">home</i> <b>Início </b>
+                </a>
+            </li>
+            <li>
+                <i class="material-icons">account_circle</i> <b>Pessoas</b>
+            </li>
+        </ol>
+        @using (Html.BeginForm("ListarPessoas", "Pessoa", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        @Html.Voltar("/Home/Index") Pessoas
+                    </h2>
+                    <small><b>Cadastre pessoas físicas e júridicas</b></small>
+                    <ul class="header-dropdown m-r--5">
+                        <li>
+                            @Html.Informacoes()
+                            @Html.Partial("~/Views/Pessoa/_Informacoes.cshtml")
+                        </li>
+                        <li>
+                            @Html.Adicionar("Adicionar")
+                        </li>
+                    </ul>
+                </div>
+                <div class="body">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table nowrap table-bordered table-striped table-hover js-basic-example dataTable" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Tipo Pessoa")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Nacional")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("CPF/CNPJ")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Nome/Razão Social")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Porte")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Status")
+                                        </th>
+                                        <th>
+                                            Ações
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var pessoa in Model.Pessoas)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => pessoa.TipoPessoa)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => pessoa.Nacional)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => pessoa.CpfCnpj)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => pessoa.NomeRazaoSocial)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => pessoa.Porte)
+                                            </td>
+                                            <td>
+                                                @if (pessoa.Ativo)
+                                                {
+                                                    <span class="label label-success">Ativa</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="label label-danger">Inativa</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-xs btn-info" href="@Url.Action("Alterar", "Pessoa", new { id = pessoa.Id })" data-toggle="tooltip" data-placement="right" title="Editar Pessoa"><i class="material-icons">border_color</i></a>
+                                                @if (pessoa.Ativo)
+                                                {
+                                                    <a class="btn btn-xs bg-orange" href="@Url.Action("Desativar", "Pessoa", new { id = @pessoa.Id })" data-toggle="tooltip" data-placement="right" title="Desativar Pessoa"><i class="material-icons">close</i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="btn btn-xs btn-success" href="@Url.Action("Ativar", "Pessoa", new { id = @pessoa.Id })" data-toggle="tooltip" data-placement="right" title="Ativar Pessoa"><i class="material-icons">check</i></a>
+                                                }
+
+                                                @if (pessoa.PermiteExcluir)
+                                                {
+                                                    <button type='button' data-url="@Url.Action("Excluir", "Pessoa", new { id = @pessoa.Id, index=true })" class='btn btn-xs bg-red pode-excluir'>
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn btn-xs bg-red" data-toggle="tooltip" data-placement="left" title="Não é possível excluir o registro.">
+                                                        <i class="material-icons">delete</i>
+                                                    </button>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <ul class="footer-dropdown m-r--5">
+                        <li>
+                            @Html.Informacoes()
+                            @Html.Partial("~/Views/Pessoa/_Informacoes.cshtml")
+                        </li>
+                        <li>
+                            @Html.Adicionar("Adicionar")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

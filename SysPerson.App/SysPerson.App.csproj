@@ -121,21 +121,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Botoes.cs" />
+    <Compile Include="Models\PessoaViewModel.cs" />
+    <Compile Include="Models\PessoaViewModelIndex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Componentes\dataTables.material.min.css" />
+    <Content Include="Content\Componentes\jquery.dataTables.min.css" />
     <Content Include="Content\Layout\all-themes.css" />
     <Content Include="Content\Layout\animate.min.css" />
     <Content Include="Content\Layout\bootstrap.min.css" />
     <Content Include="Content\Layout\material.min.css" />
-    <Content Include="Content\Layout\select2.min.css" />
+    <Content Include="Content\Componentes\select2.min.css" />
     <Content Include="Content\Layout\style.css" />
     <Content Include="Content\Layout\toastr.css" />
     <Content Include="Content\Layout\waitMe.css" />
     <Content Include="Content\Layout\waves.min.css" />
+    <Content Include="Scripts\Componentes\dataTables.material.min.js" />
+    <Content Include="Scripts\Componentes\jquery-datatable.js" />
+    <Content Include="Scripts\Componentes\jquery.dataTables.min.js" />
     <Content Include="Scripts\Layout\admin.js" />
     <Content Include="Scripts\Layout\autosize.js" />
     <Content Include="Scripts\Layout\bootstrap.min.js" />
@@ -152,6 +161,8 @@
     <Content Include="Scripts\Layout\waitMe.js" />
     <Content Include="Scripts\Layout\waves.js" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Pessoa\Index.cshtml" />
+    <Content Include="Views\Pessoa\_Informacoes.cshtml" />
     <None Include="Views\Shared\_Header.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -170,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
