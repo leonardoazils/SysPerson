@@ -126,8 +126,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Botoes.cs" />
-    <Compile Include="Models\PessoaViewModel.cs" />
-    <Compile Include="Models\PessoaViewModelIndex.cs" />
+    <Compile Include="Models\Pessoa\PessoaFormularioViewModel.cs" />
+    <Compile Include="Models\Pessoa\PessoaViewModel.cs" />
+    <Compile Include="Models\Pessoa\PessoaIndexViewModel.cs" />
+    <Compile Include="Models\Seeders\CaracterizacaoCapital.cs" />
+    <Compile Include="Models\Seeders\EstadoCivil.cs" />
+    <Compile Include="Models\Seeders\Genero.cs" />
+    <Compile Include="Models\Seeders\Porte.cs" />
+    <Compile Include="Models\Seeders\TipoEmpresa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,9 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
     <Content Include="Views\Pessoa\_Informacoes.cshtml" />
+    <Content Include="Views\Pessoa\Formulario.cshtml" />
+    <Content Include="Views\Pessoa\_PessoaJuridica.cshtml" />
+    <Content Include="Views\Pessoa\_PessoaFisica.cshtml" />
     <None Include="Views\Shared\_Header.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

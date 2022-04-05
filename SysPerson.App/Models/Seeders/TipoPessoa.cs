@@ -2,7 +2,7 @@
 
 namespace SysPerson.App.Models.Seeders
 {
-    public class Genero
+    public class TipoPessoa
     {
         public Guid Id { get; set; }
 
