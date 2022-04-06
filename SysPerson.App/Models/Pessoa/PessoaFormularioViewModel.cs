@@ -19,7 +19,7 @@ namespace SysPerson.App.Models.Pessoa
 
         public Guid PorteId { get; set; }
 
-        public Guid CaracterizacaoCapital { get; set; }
+        public Guid CaracterizacaoCapitalId { get; set; }
 
         public Guid TipoPessoaId { get; set; }
 
@@ -57,15 +57,15 @@ namespace SysPerson.App.Models.Pessoa
 
         public string DataUltimaAtualizacao { get; set; }
 
-        public decimal QuantidadeCota { get; set; }
+        public decimal QuantidadeQuota { get; set; }
 
-        public decimal ValorCota { get; set; }
+        public decimal ValorQuota { get; set; }
 
         public decimal CapitalSocial { get; set; }
 
         public bool Ativa { get; set; }
 
-        public DateTime DataConstituicao { get; set; }
+        public string DataConstituicao { get; set; }
 
         public NacionalEnum Nacional { get; set; }
 

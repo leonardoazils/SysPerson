@@ -51,14 +51,6 @@
                             }
                         </ul>
                     </div>
-                    <div class="hidden-lg hidden-md">
-                        <small><b>Cadastre pessoas.</b></small>
-                        <ul class="header-dropdown m-r--5">
-                            <li>
-                                @Html.Salvar()
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="body">
                     <div class="row">
@@ -69,20 +61,20 @@
                     <br />
                     <div class="row">
                         <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <label for="BandeiraId" class="obrigatorio">Bandeira</label>
+                            <label for="BandeiraId" class="obrigatorio">Tipo Pessoa</label>
                             <div class="form-group form-float">
                                 @Html.DropDownListFor(model => model.TipoPessoaId, Model.SelectListItemListaTipoPessoa, "Selecione..", new { @class = "form-control consulta", @Id = "TipoPessoaId" })
-                                <span class="informacao">Selecione o tipo de pessoa que deseja cadastrar.</span>
                             </div>
                         </div>
                         <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <label for="Filtros_SituacaoId">Situação</label>
+                            <label for="Nacional" class="obrigatorio">Nacional</label>
                             <div class="form-group">
                                 @Html.EnumDropDownListFor(model => model.Nacional, "Selecione..", new { @class = "form-control consulta", @Id = "Nacional" })
                             </div>
                         </div>
                         <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group form-float">
+                                <br/>
                                 <div class="form-line">
                                     @Html.TextBoxFor(model => model.DataUltimaAtualizacao, new { @class = "form-control" })
                                     <label class="form-label">Dt. Últ. Atualização</label>
@@ -99,8 +91,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        @Html.Partial("~/Views/Pessoa/_PessoaFisica.cshtml", Model)
+                        @Html.Partial("~/Views/Pessoa/_PessoaJuridica.cshtml", Model)
+                    </div>
                 </div>
             }
         </div>
     </div>
 </div>
+
+@section estilos{
+    @Styles.Render("~/Content/componentes/checkbox")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/componentes/select2")
+    @Scripts.Render("~/bundles/componentes/maskedinput")
+    @Scripts.Render("~/bundles/componentes/maskmoney")
+    @Scripts.Render("~/bundles/views/pessoa/formulario")
+}

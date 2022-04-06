@@ -129,14 +129,11 @@
     <Compile Include="Models\Pessoa\PessoaFormularioViewModel.cs" />
     <Compile Include="Models\Pessoa\PessoaViewModel.cs" />
     <Compile Include="Models\Pessoa\PessoaIndexViewModel.cs" />
-    <Compile Include="Models\Seeders\CaracterizacaoCapital.cs" />
-    <Compile Include="Models\Seeders\EstadoCivil.cs" />
-    <Compile Include="Models\Seeders\Genero.cs" />
-    <Compile Include="Models\Seeders\Porte.cs" />
-    <Compile Include="Models\Seeders\TipoEmpresa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Componentes\bootstrap-material-datetimepicker.css" />
+    <Content Include="Content\Componentes\checkbox.css" />
     <Content Include="Content\Componentes\dataTables.material.min.css" />
     <Content Include="Content\Componentes\jquery.dataTables.min.css" />
     <Content Include="Content\Layout\all-themes.css" />
@@ -148,9 +145,16 @@
     <Content Include="Content\Layout\toastr.css" />
     <Content Include="Content\Layout\waitMe.css" />
     <Content Include="Content\Layout\waves.min.css" />
+    <Content Include="Scripts\Componentes\bootstrap-material-datetimepicker.js" />
     <Content Include="Scripts\Componentes\dataTables.material.min.js" />
+    <Content Include="Scripts\Componentes\datetimepicker.js" />
     <Content Include="Scripts\Componentes\jquery-datatable.js" />
     <Content Include="Scripts\Componentes\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Componentes\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\Componentes\jquery.maskMoney.min.js" />
+    <Content Include="Scripts\Componentes\modals.js" />
+    <Content Include="Scripts\Componentes\moment.js" />
+    <Content Include="Scripts\Componentes\select2.min.js" />
     <Content Include="Scripts\Layout\admin.js" />
     <Content Include="Scripts\Layout\autosize.js" />
     <Content Include="Scripts\Layout\bootstrap.min.js" />
@@ -172,6 +176,7 @@
     <Content Include="Views\Pessoa\Formulario.cshtml" />
     <Content Include="Views\Pessoa\_PessoaJuridica.cshtml" />
     <Content Include="Views\Pessoa\_PessoaFisica.cshtml" />
+    <Content Include="Scripts\Views\Pessoa\formulario.js" />
     <None Include="Views\Shared\_Header.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -197,6 +202,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SysPerson.Framework\SysPerson.Framework.csproj">
+      <Project>{64314478-3d2a-4a5a-9327-5969a7a92945}</Project>
+      <Name>SysPerson.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

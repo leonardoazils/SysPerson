@@ -84,3 +84,5 @@ C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.csproj.Co
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.csproj.CopyComplete
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.pdb
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.pdb

@@ -25,6 +25,28 @@ namespace SysPerson.App
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/componentes/checkbox").Include(
+                    "~/Content/Componentes/checkbox.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/views/pessoa/formulario").Include(
+                  "~/Scripts/Views/Pessoa/formulario.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/componentes/maskedinput").Include(
+                    "~/Scripts/Componentes/jquery.maskedinput.min.js"
+                  ));
+
+            bundles.Add(new ScriptBundle("~/bundles/componentes/maskmoney").Include(
+              "~/Scripts/Componentes/jquery.maskMoney.min.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/componentes/select2").Include(
+              "~/Scripts/Componentes/select2.min.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/componentes/modals").Include(
+                    "~/Scripts/Componentes/modals.js"
+                  ));
         }
     }
 }
