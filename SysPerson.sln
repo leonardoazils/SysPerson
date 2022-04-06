@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysPerson.Repository", "Sys
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysPerson.Domain", "SysPerson.Domain\SysPerson.Domain.csproj", "{1E5827AF-74AF-4853-969F-AAE39649767A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysPerson.Service", "SysPerson.Service\SysPerson.Service.csproj", "{0926E517-2757-4931-9A45-EBF7542C3A45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1E5827AF-74AF-4853-969F-AAE39649767A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5827AF-74AF-4853-969F-AAE39649767A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5827AF-74AF-4853-969F-AAE39649767A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0926E517-2757-4931-9A45-EBF7542C3A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0926E517-2757-4931-9A45-EBF7542C3A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0926E517-2757-4931-9A45-EBF7542C3A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0926E517-2757-4931-9A45-EBF7542C3A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

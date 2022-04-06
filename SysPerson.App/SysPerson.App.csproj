@@ -221,6 +221,10 @@
       <Project>{50b9be01-a1b2-496e-972b-40d8f71ea8bd}</Project>
       <Name>SysPerson.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SysPerson.Service\SysPerson.Service.csproj">
+      <Project>{0926e517-2757-4931-9a45-ebf7542c3a45}</Project>
+      <Name>SysPerson.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

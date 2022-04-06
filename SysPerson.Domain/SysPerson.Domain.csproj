@@ -45,6 +45,7 @@
     <Compile Include="Entities\EntidadeBase.cs" />
     <Compile Include="Entities\Pessoa.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
