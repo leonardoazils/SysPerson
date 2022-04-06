@@ -112,6 +112,71 @@ namespace SysPerson.App.Controllers
             }
         }
 
+        private PessoaFormularioViewModel MontarModeloPessoaFisica(Pessoa pessoa)
+        {
+            try
+            {
+                var modelo = new PessoaFormularioViewModel();
+
+                modelo.Id = pessoa.Id;
+                modelo.TipoPessoaId = pessoa.TipoPessoaId;
+                modelo.EstadoCivilId = pessoa.EstadoCivilId.HasValue ? pessoa.EstadoCivilId.Value : Guid.Empty;
+                modelo.TipoEmpresaId = pessoa.TipoEmpresaId.HasValue ? pessoa.TipoEmpresaId.Value : Guid.Empty;
+                modelo.GeneroId = pessoa.GeneroId.HasValue ? pessoa.GeneroId.Value : Guid.Empty;
+                modelo.Nacional = pessoa.Nacional;
+                modelo.Ativa = pessoa.Ativa;
+                modelo.DataUltimaAtualizacao = pessoa.DataUltimaAtualizacao.Value.ToShortDateString();
+                modelo.Cpf = pessoa.Cpf;
+                modelo.Nome = pessoa.Nome;
+                modelo.EmailPrincipal = pessoa.EmailPrincipal;
+                modelo.Profissao = pessoa.Profissao;
+                modelo.TelefonePrincipal = pessoa.TelefonePrincipal;
+                modelo.TelefoneSecundario = pessoa.TelefoneSecundario;
+                modelo.TelefoneReserva = pessoa.TelefoneReserva;
+                modelo.Nascimento = pessoa.Nascimento.Value.ToShortDateString();
+                modelo.Nacionalidade = pessoa.Nacionalidade;
+                modelo.Ativa = pessoa.Ativa;
+
+                return modelo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private PessoaFormularioViewModel MontarModeloPessoaJuridica(Pessoa pessoa)
+        {
+            try
+            {
+                var modelo = new PessoaFormularioViewModel();
+
+                modelo.Id = pessoa.Id;
+                modelo.TipoEmpresaPjId = pessoa.TipoEmpresaPjId.HasValue ? pessoa.TipoEmpresaPjId.Value : Guid.Empty;
+                modelo.PorteId = pessoa.PorteId.HasValue ? pessoa.PorteId.Value : Guid.Empty;
+                modelo.CaracterizacaoCapitalId = pessoa.CaracterizacaoCapitalId.HasValue ? pessoa.CaracterizacaoCapitalId.Value : Guid.Empty;
+                modelo.Cnpj = pessoa.Cnpj;
+                modelo.RazaoSocial = pessoa.RazaoSocial;
+                modelo.NomeFantasia = pessoa.NomeFantasia;
+                modelo.DataConstituicao = pessoa.DataConstituicao.HasValue ? pessoa.DataConstituicao.Value.ToShortDateString() : null;
+                modelo.TelefonePrincipalEmpresa = pessoa.TelefonePrincipalEmpresa;
+                modelo.TelefoneSecundarioEmpresa = pessoa.TelefoneSecundarioEmpresa;
+                modelo.TelefoneReservaEmpresa = pessoa.TelefoneReservaEmpresa;
+                modelo.Website = pessoa.Website;
+                modelo.EmailPrincipal = pessoa.EmailPrincipal;
+                modelo.QuantidadeQuota = pessoa.QuantidadeQuota.HasValue ? pessoa.QuantidadeQuota.Value : decimal.Zero;
+                modelo.ValorQuota = pessoa.ValorQuota.HasValue ? pessoa.ValorQuota.Value : decimal.Zero;
+                modelo.CapitalSocial = pessoa.CapitalSocial.HasValue ? pessoa.CapitalSocial.Value : decimal.Zero;
+                modelo.Ativa = pessoa.Ativa;
+
+                return modelo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ActionResult Index()
         {
             var listaPessoas = new PessoaViewModelIndex();
@@ -205,6 +270,79 @@ namespace SysPerson.App.Controllers
             TempData["warning"] = "Registro de pessoa salvo com sucesso.";
 
             return RedirectToAction(btnSalvarContinuar != null ? "Adicionar" : "Index");
+        }
+
+        public ActionResult Alterar(Guid id)
+        {
+            try
+            {
+                var entidade = _pessoaService.Get(id);
+                var modelo = new PessoaFormularioViewModel();
+
+                if (entidade.TipoPessoaId == PESSOA_FISICA)
+                    modelo = MontarModeloPessoaFisica(entidade);
+                else
+                    modelo = MontarModeloPessoaJuridica(entidade);
+
+                return View("Formulario", CarregarDadosCadastro(modelo));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Alterar(PessoaFormularioViewModel model)
+        {
+            try
+            {
+                if (model.TipoPessoaId == PESSOA_NAO_SELECIONADA)
+                {
+                    TempData["warning"] = "É necessário selecionar o tipo de pessoa e preencher os campos obrigatórios para continuar.";
+
+                    return View("Formulario", CarregarDadosCadastro(model));
+                }
+                else if (model.TipoPessoaId == PESSOA_FISICA)
+                {
+                    if (!ValidarPreenchimentoPessoaFisica(model))
+                    {
+                        TempData["warning"] = "Há campos obrigatórios não preenchidos, por favor, verifique.";
+
+                        return View("Formulario", CarregarDadosCadastro(model));
+                    }
+                    else
+                    {
+                        var pessoaFisica = MontarEntidadePessoaFisica(model);
+
+                        _pessoaService.Update(pessoaFisica);
+                    }
+                }
+                else 
+                {
+                    if (!ValidarPreenchimentoPessoaJuridica(model))
+                    {
+                        TempData["warning"] = "Há campos obrigatórios não preenchidos, por favor, verifique.";
+
+                        return View("Formulario", CarregarDadosCadastro(model));
+                    }
+                    else
+                    {
+                        var pessoaJuridica = MontarEntidadePessoaJuridica(model);
+
+                        _pessoaService.Update(pessoaJuridica);
+                    }
+                }
+
+                TempData["success"] = "Dados alterados com sucesso!";
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
