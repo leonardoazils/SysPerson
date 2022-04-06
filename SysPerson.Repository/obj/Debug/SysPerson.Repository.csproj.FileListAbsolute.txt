@@ -32,3 +32,5 @@ C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\bin\Debug\pt-br\System.Web
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\bin\Debug\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.initialcommit.resources
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.csproj.GenerateResource.cache
+C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.TratarCamposNulosPessoa.resources
+C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.TratarCampoDataUltimaAtualizacaoTabelaPessoa.resources

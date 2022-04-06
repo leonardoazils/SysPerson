@@ -5,7 +5,7 @@ namespace SysPerson.Domain.Entities
 {
     public class Pessoa : EntidadeBase
     {
-        public Guid EstadoCivilId { get; set; }
+        public Guid? EstadoCivilId { get; set; }
 
         public Guid TipoEmpresaId { get; set; }
 
@@ -15,7 +15,7 @@ namespace SysPerson.Domain.Entities
 
         public Guid PorteId { get; set; }
 
-        public Guid CaracterizacaoCapitalId { get; set; }
+        public Guid? CaracterizacaoCapitalId { get; set; }
 
         public int TipoPessoaId { get; set; }
 
@@ -51,17 +51,17 @@ namespace SysPerson.Domain.Entities
 
         public string Website { get; set; }
 
-        public string DataUltimaAtualizacao { get; set; }
+        public DateTime? DataUltimaAtualizacao { get; set; }
 
-        public decimal QuantidadeQuota { get; set; }
+        public decimal? QuantidadeQuota { get; set; }
 
-        public decimal ValorQuota { get; set; }
+        public decimal? ValorQuota { get; set; }
 
         public decimal CapitalSocial { get; set; }
 
         public bool Ativa { get; set; }
 
-        public string DataConstituicao { get; set; }
+        public DateTime? DataConstituicao { get; set; }
 
         public NacionalEnum Nacional { get; set; }
     }

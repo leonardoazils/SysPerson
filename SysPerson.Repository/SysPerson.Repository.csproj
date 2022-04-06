@@ -56,6 +56,14 @@
     <Compile Include="Migrations\202204060433227_initial-commit.designer.cs">
       <DependentUpon>202204060433227_initial-commit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204060445321_TratarCamposNulosPessoa.cs" />
+    <Compile Include="Migrations\202204060445321_TratarCamposNulosPessoa.designer.cs">
+      <DependentUpon>202204060445321_TratarCamposNulosPessoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204060447258_TratarCampoDataUltimaAtualizacaoTabelaPessoa.cs" />
+    <Compile Include="Migrations\202204060447258_TratarCampoDataUltimaAtualizacaoTabelaPessoa.designer.cs">
+      <DependentUpon>202204060447258_TratarCampoDataUltimaAtualizacaoTabelaPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -74,6 +82,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204060433227_initial-commit.resx">
       <DependentUpon>202204060433227_initial-commit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204060445321_TratarCamposNulosPessoa.resx">
+      <DependentUpon>202204060445321_TratarCamposNulosPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204060447258_TratarCampoDataUltimaAtualizacaoTabelaPessoa.resx">
+      <DependentUpon>202204060447258_TratarCampoDataUltimaAtualizacaoTabelaPessoa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

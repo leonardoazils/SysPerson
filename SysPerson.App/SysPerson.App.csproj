@@ -209,6 +209,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SysPerson.Domain\SysPerson.Domain.csproj">
+      <Project>{1e5827af-74af-4853-969f-aae39649767a}</Project>
+      <Name>SysPerson.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SysPerson.Framework\SysPerson.Framework.csproj">
       <Project>{64314478-3d2a-4a5a-9327-5969a7a92945}</Project>
       <Name>SysPerson.Framework</Name>

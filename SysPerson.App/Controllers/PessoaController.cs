@@ -1,7 +1,9 @@
 ﻿using SysPerson.App.Models.Pessoa;
 using SysPerson.App.Validacoes;
+using SysPerson.Domain.Entities;
 using SysPerson.Framework.Extensions;
 using SysPerson.Framework.Seeders;
+using SysPerson.Service;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -12,6 +14,7 @@ namespace SysPerson.App.Controllers
     {
         private const int PESSOA_FISICA = 1;
         private const int PESSOA_NAO_SELECIONADA = 0;
+        private PessoaService _pessoaService = new PessoaService();
 
         private bool ValidarPreenchimentoPessoaFisica(PessoaFormularioViewModel model)
         {
@@ -38,6 +41,30 @@ namespace SysPerson.App.Controllers
                 model.SelectListItemListaCaracterizacaoCapital = new CaracterizacaoCapital().Obter().DropDownList();
 
                 return model;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private Pessoa MontarEntidadePessoaFisica(PessoaFormularioViewModel model)
+        {
+            try
+            {
+                return new Pessoa();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private Pessoa MontarEntidadePessoaJuridica(PessoaFormularioViewModel model)
+        {
+            try
+            {
+                return new Pessoa();
             }
             catch (Exception ex)
             {
@@ -114,7 +141,9 @@ namespace SysPerson.App.Controllers
                 }
                 else
                 {
+                    var pessoaFisica = MontarEntidadePessoaFisica(model);
 
+                    _pessoaService.Adicionar(pessoaFisica);
                 }
             }
             else
@@ -127,7 +156,9 @@ namespace SysPerson.App.Controllers
                 }
                 else
                 {
+                    var pessoaJuridica = MontarEntidadePessoaJuridica(model);
 
+                    _pessoaService.Adicionar(pessoaJuridica);
                 }
             }
 
