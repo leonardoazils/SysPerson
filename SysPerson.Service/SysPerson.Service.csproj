@@ -50,6 +50,10 @@
       <Project>{1e5827af-74af-4853-969f-aae39649767a}</Project>
       <Name>SysPerson.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SysPerson.Repository\SysPerson.Repository.csproj">
+      <Project>{50b9be01-a1b2-496e-972b-40d8f71ea8bd}</Project>
+      <Name>SysPerson.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

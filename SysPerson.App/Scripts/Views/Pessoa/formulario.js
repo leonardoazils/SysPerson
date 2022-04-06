@@ -22,9 +22,13 @@
             $("#container-pessoa-juridica").addClass("hidden");
             $("#container-pessoa-fisica").removeClass("hidden");
         }
-        else {
+        else if (tipoPessoa == 2) {
             $("#container-pessoa-fisica").addClass("hidden");
             $("#container-pessoa-juridica").removeClass("hidden");
         }
+        else {
+            $("#container-pessoa-juridica").addClass("hidden");
+            $("#container-pessoa-fisica").addClass("hidden");
+        } 
     });
 });

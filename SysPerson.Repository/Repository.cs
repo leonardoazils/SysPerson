@@ -1,73 +1,120 @@
 ﻿using SysPerson.Domain.Entities;
 using SysPerson.Domain.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace SysPerson.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T>, IDisposable where T : class
     {
-        internal DbContext _contextoBancoDados { get; set; }
-        internal IDbSet<T> Entidades => _contextoBancoDados.Set<T>();
+        private SysPersonContext _context;
 
-        public Repository(DbContext contextoBancoDados)
+        public Repository()
         {
-            _contextoBancoDados = contextoBancoDados;
+            _context = new SysPersonContext();
         }
 
-        private SqlConnection getConexaoBD()
+        public IQueryable<T> GetAll()
         {
-            string strConexao = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
-            return new SqlConnection(strConexao);
+            return _context.Set<T>();
         }
 
-        public Guid Adicionar(T entidade)
+        public IQueryable<T> Get(Expression<Func<T, bool>> predicate)
         {
-            Entidades.Add(entidade);
-
-            return (entidade as EntidadeBase).Id;
+            return _context.Set<T>().Where(predicate);
         }
 
-        public Guid AdicionarOuAtualizar(T entidade)
+        public void Add(T entity)
         {
-            Entidades.AddOrUpdate(entidade);
-            
-            return (entidade as EntidadeBase).Id;
+            _context.Set<T>().Add(entity);
         }
 
-        public bool Alterar(T entidade)
+        public void Update(T entity)
         {
-            Entidades.AddOrUpdate(entidade);
-
-            return true;
+            _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public T Consultar(Guid id)
+        public void Delete(Func<T, bool> predicate)
         {
-            return Entidades.Find(id);
+            _context.Set<T>()
+                .Where(predicate).ToList()
+                .ForEach(del => _context.Set<T>().Remove(del));
         }
 
-        public bool Excluir(Guid id)
+        public void Commit()
         {
-            var entidade = Consultar(id);
-            
-            if (entidade == null)
-                return false;
-            
-            Entidades.Remove(entidade);
-            _contextoBancoDados.SaveChanges();
-            
-            return true;
+            _context.SaveChanges();
         }
 
-        public IEnumerable<T> ListarTodos()
+        public void Dispose()
         {
-            return Entidades.ToList();
+            if (_context != null)
+                _context.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
+
+    //public class Repository<T> : IRepository<T> where T : class
+    //{
+    //    internal DbContext _contextoBancoDados { get; set; }
+    //    internal IDbSet<T> Entidades => _contextoBancoDados.Set<T>();
+
+    //    public Repository(DbContext contextoBancoDados)
+    //    {
+    //        _contextoBancoDados = contextoBancoDados;
+    //    }
+
+    //    private SqlConnection getConexaoBD()
+    //    {
+    //        string strConexao = ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
+    //        return new SqlConnection(strConexao);
+    //    }
+
+    //    public Guid Adicionar(T entidade)
+    //    {
+    //        Entidades.Add(entidade);
+
+    //        return (entidade as EntidadeBase).Id;
+    //    }
+
+    //    public Guid AdicionarOuAtualizar(T entidade)
+    //    {
+    //        Entidades.AddOrUpdate(entidade);
+
+    //        return (entidade as EntidadeBase).Id;
+    //    }
+
+    //    public bool Alterar(T entidade)
+    //    {
+    //        Entidades.AddOrUpdate(entidade);
+
+    //        return true;
+    //    }
+
+    //    public T Consultar(Guid id)
+    //    {
+    //        return Entidades.Find(id);
+    //    }
+
+    //    public bool Excluir(Guid id)
+    //    {
+    //        var entidade = Consultar(id);
+
+    //        if (entidade == null)
+    //            return false;
+
+    //        Entidades.Remove(entidade);
+    //        _contextoBancoDados.SaveChanges();
+
+    //        return true;
+    //    }
+
+    //    public IEnumerable<T> ListarTodos()
+    //    {
+    //        return Entidades.ToList();
+    //    }
+    //}
 }

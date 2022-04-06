@@ -14,7 +14,7 @@ namespace SysPerson.App.Controllers
     {
         private const int PESSOA_FISICA = 1;
         private const int PESSOA_NAO_SELECIONADA = 0;
-        private PessoaService _pessoaService = new PessoaService();
+        private readonly PessoaService _pessoaService = new PessoaService();
 
         private bool ValidarPreenchimentoPessoaFisica(PessoaFormularioViewModel model)
         {
@@ -52,7 +52,26 @@ namespace SysPerson.App.Controllers
         {
             try
             {
-                return new Pessoa();
+                var pessoa = new Pessoa();
+
+                pessoa.TipoPessoaId = model.TipoPessoaId;
+                pessoa.EstadoCivilId = model.EstadoCivilId;
+                pessoa.TipoEmpresaId = model.TipoEmpresaId;
+                pessoa.GeneroId = model.GeneroId;
+                pessoa.Nacional = model.Nacional;
+                pessoa.Ativa = model.Ativa;
+                pessoa.DataUltimaAtualizacao = DateTime.Now;
+                pessoa.Cpf = model.Cpf;
+                pessoa.Nome = model.Nome;
+                pessoa.EmailPrincipal = model.EmailPrincipal;
+                pessoa.Profissao = model.Profissao;
+                pessoa.TelefonePrincipal = model.TelefonePrincipal;
+                pessoa.TelefoneSecundario = model.TelefoneSecundario;
+                pessoa.TelefoneReserva = model.TelefoneReserva;
+                pessoa.Nascimento = DateTime.Parse(model.Nascimento);
+                pessoa.Nacionalidade = model.Nacionalidade;
+
+                return pessoa;
             }
             catch (Exception ex)
             {
@@ -64,7 +83,28 @@ namespace SysPerson.App.Controllers
         {
             try
             {
-                return new Pessoa();
+                var pessoa = new Pessoa();
+
+                if (model.Id != Guid.Empty)
+                    pessoa.Id = model.Id;
+
+                pessoa.TipoEmpresaPjId = model.TipoEmpresaPjId;
+                pessoa.PorteId = model.PorteId;
+                pessoa.CaracterizacaoCapitalId = model.CaracterizacaoCapitalId;
+                pessoa.Cnpj = model.Cnpj;
+                pessoa.RazaoSocial = model.RazaoSocial;
+                pessoa.NomeFantasia = model.NomeFantasia;
+                pessoa.DataConstituicao = !string.IsNullOrEmpty(model.DataConstituicao) ? DateTime.Parse(model.DataConstituicao) : (DateTime?)null;
+                pessoa.TelefonePrincipalEmpresa = model.TelefonePrincipalEmpresa;
+                pessoa.TelefoneSecundarioEmpresa = model.TelefoneSecundarioEmpresa;
+                pessoa.TelefoneReservaEmpresa = model.TelefoneReservaEmpresa;
+                pessoa.Website = model.Website;
+                pessoa.EmailPrincipal = model.EmailPrincipal;
+                pessoa.QuantidadeQuota = model.QuantidadeQuota;
+                pessoa.ValorQuota = model.ValorQuota;
+                pessoa.CapitalSocial = model.CapitalSocial;
+
+                return pessoa;
             }
             catch (Exception ex)
             {
@@ -143,7 +183,7 @@ namespace SysPerson.App.Controllers
                 {
                     var pessoaFisica = MontarEntidadePessoaFisica(model);
 
-                    _pessoaService.Adicionar(pessoaFisica);
+                    _pessoaService.Create(pessoaFisica);
                 }
             }
             else
@@ -158,9 +198,11 @@ namespace SysPerson.App.Controllers
                 {
                     var pessoaJuridica = MontarEntidadePessoaJuridica(model);
 
-                    _pessoaService.Adicionar(pessoaJuridica);
+                    _pessoaService.Create(pessoaJuridica);
                 }
             }
+
+            TempData["warning"] = "Registro de pessoa salvo com sucesso.";
 
             return RedirectToAction(btnSalvarContinuar != null ? "Adicionar" : "Index");
         }

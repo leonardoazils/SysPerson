@@ -88,3 +88,14 @@ C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.pdb
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\FluentValidation.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\FluentValidation.xml
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Domain.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Repository.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Service.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\EntityFramework.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Domain.pdb
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Repository.pdb
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Repository.dll.config
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Service.pdb
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\EntityFramework.xml
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\EntityFramework.SqlServer.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\EntityFramework.SqlServer.xml

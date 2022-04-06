@@ -34,3 +34,4 @@ C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Reposi
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.csproj.GenerateResource.cache
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.TratarCamposNulosPessoa.resources
 C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.TratarCampoDataUltimaAtualizacaoTabelaPessoa.resources
+C:\Workspace\SysPerson\SysPerson\SysPerson.Repository\obj\Debug\SysPerson.Repository.Migrations.AtualizarRegrasTabelaPessoa.resources

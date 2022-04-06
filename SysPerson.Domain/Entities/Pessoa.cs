@@ -7,13 +7,13 @@ namespace SysPerson.Domain.Entities
     {
         public Guid? EstadoCivilId { get; set; }
 
-        public Guid TipoEmpresaId { get; set; }
+        public Guid? TipoEmpresaId { get; set; }
 
-        public Guid TipoEmpresaPjId { get; set; }
+        public Guid? TipoEmpresaPjId { get; set; }
 
-        public Guid GeneroId { get; set; }
+        public Guid? GeneroId { get; set; }
 
-        public Guid PorteId { get; set; }
+        public Guid? PorteId { get; set; }
 
         public Guid? CaracterizacaoCapitalId { get; set; }
 
@@ -45,23 +45,23 @@ namespace SysPerson.Domain.Entities
 
         public string TelefoneReservaEmpresa { get; set; }
 
-        public string Nascimento { get; set; }
-
         public string Nacionalidade { get; set; }
 
         public string Website { get; set; }
-
-        public DateTime? DataUltimaAtualizacao { get; set; }
 
         public decimal? QuantidadeQuota { get; set; }
 
         public decimal? ValorQuota { get; set; }
 
-        public decimal CapitalSocial { get; set; }
+        public decimal? CapitalSocial { get; set; }
 
         public bool Ativa { get; set; }
 
         public DateTime? DataConstituicao { get; set; }
+
+        public DateTime? Nascimento { get; set; }
+
+        public DateTime? DataUltimaAtualizacao { get; set; }
 
         public NacionalEnum Nacional { get; set; }
     }
