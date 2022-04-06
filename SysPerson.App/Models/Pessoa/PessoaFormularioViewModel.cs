@@ -21,7 +21,7 @@ namespace SysPerson.App.Models.Pessoa
 
         public Guid CaracterizacaoCapitalId { get; set; }
 
-        public Guid TipoPessoaId { get; set; }
+        public int TipoPessoaId { get; set; }
 
         public string Cpf { get; set; }
 

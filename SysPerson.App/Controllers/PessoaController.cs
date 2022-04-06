@@ -1,4 +1,5 @@
 ﻿using SysPerson.App.Models.Pessoa;
+using SysPerson.App.Validacoes;
 using SysPerson.Framework.Extensions;
 using SysPerson.Framework.Seeders;
 using System;
@@ -9,6 +10,41 @@ namespace SysPerson.App.Controllers
 {
     public class PessoaController : Controller
     {
+        private const int PESSOA_FISICA = 1;
+        private const int PESSOA_NAO_SELECIONADA = 0;
+
+        private bool ValidarPreenchimentoPessoaFisica(PessoaFormularioViewModel model)
+        {
+            var validador = new ValidacaoPessoaFisicaViewModelCadastro();
+            return validador.Validate(model).IsValid;
+        }
+
+        private bool ValidarPreenchimentoPessoaJuridica(PessoaFormularioViewModel model)
+        {
+            var validador = new ValidacaoPessoaJuridicaViewModelCadastro();
+            return validador.Validate(model).IsValid;
+        }
+
+        private PessoaFormularioViewModel CarregarDadosCadastro(PessoaFormularioViewModel model)
+        {
+            try
+            {
+                model.SelectListItemListaGenero = new Genero().Obter().DropDownList();
+                model.SelectListItemListaEstadoCivil = new EstadoCivil().Obter().DropDownList();
+                model.SelectListItemListaPorte = new Porte().Obter().DropDownList();
+                model.SelectListItemListaTipoEmpresa = new TipoEmpresa().Obter().DropDownList();
+                model.SelectListItemListaTipoEmpresaPj = new TipoEmpresaPj().Obter().DropDownList();
+                model.SelectListItemListaTipoPessoa = new TipoPessoa().Obter().DropDownList(PESSOA_FISICA);
+                model.SelectListItemListaCaracterizacaoCapital = new CaracterizacaoCapital().Obter().DropDownList();
+
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ActionResult Index()
         {
             var listaPessoas = new PessoaViewModelIndex();
@@ -50,22 +86,52 @@ namespace SysPerson.App.Controllers
         {
             try
             {
-                var pessoa = new PessoaFormularioViewModel();
-
-                pessoa.SelectListItemListaGenero = new Genero().Obter().DropDownList();
-                pessoa.SelectListItemListaEstadoCivil = new EstadoCivil().Obter().DropDownList();
-                pessoa.SelectListItemListaPorte = new Porte().Obter().DropDownList();
-                pessoa.SelectListItemListaTipoEmpresa = new TipoEmpresa().Obter().DropDownList();
-                pessoa.SelectListItemListaTipoEmpresaPj = new TipoEmpresaPj().Obter().DropDownList();
-                pessoa.SelectListItemListaTipoPessoa = new TipoPessoa().Obter().DropDownList();
-                pessoa.SelectListItemListaCaracterizacaoCapital = new CaracterizacaoCapital().Obter().DropDownList();
-
-                return View("Formulario", pessoa);
+                return View("Formulario", CarregarDadosCadastro(new PessoaFormularioViewModel() { Ativa = true }));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Adicionar(PessoaFormularioViewModel model, string btnSalvarContinuar)
+        {
+            if(model.TipoPessoaId == PESSOA_NAO_SELECIONADA)
+            {
+                TempData["warning"] = "É necessário selecionar o tipo de pessoa e preencher os campos obrigatórios para continuar.";
+
+                return View("Formulario", CarregarDadosCadastro(model));
+            }
+            else if(model.TipoPessoaId == PESSOA_FISICA)
+            {
+                if(!ValidarPreenchimentoPessoaFisica(model))
+                {
+                    TempData["warning"] = "Há campos obrigatórios não preenchidos, por favor, verifique.";
+
+                    return View("Formulario", CarregarDadosCadastro(model));
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                if (!ValidarPreenchimentoPessoaJuridica(model))
+                {
+                    TempData["warning"] = "Há campos obrigatórios não preenchidos, por favor, verifique.";
+
+                    return View("Formulario", CarregarDadosCadastro(model));
+                }
+                else
+                {
+
+                }
+            }
+
+            return RedirectToAction(btnSalvarContinuar != null ? "Adicionar" : "Index");
         }
     }
 }

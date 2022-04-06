@@ -86,3 +86,5 @@ C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\obj\Debug\SysPerson.App.pdb
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.dll
 C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\SysPerson.Framework.pdb
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\FluentValidation.dll
+C:\Workspace\SysPerson\SysPerson\SysPerson.App\bin\FluentValidation.xml
