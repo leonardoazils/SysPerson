@@ -34,14 +34,8 @@
                     <div class="hidden-sm hidden-xs">
                         <small><b>Cadastre pessoas para que possa utilizar no sistema.</b></small>
                         <ul class="header-dropdown m-r--5">
-                            @if (!Model.NovoCadastro)
-                            {
-                                <li>
-                                    <button type='button' onclick="showModal('@Url.Action("Excluir", "Pessoa", new { id = Model.Id, index = false })')" class='btn btn-lg bg-red'>EXCLUIR</button>
-                                </li>
-                            }
                             <li>
-                                @Html.Salvar()
+                                @Html.Salvar(Model.BloqueiaCampos)
                             </li>
                             @if (Model.NovoCadastro)
                             {
@@ -55,6 +49,8 @@
                 <div class="body">
                     @Html.HiddenFor(model => model.Id)
                     @Html.HiddenFor(model => model.SituacaoPessoa)
+                    @Html.HiddenFor(model => model.BloqueiaCampos)
+
                     <div class="row">
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <span><b>- Campos marcados com <span class="obrigatorio"></span> são obrigatórios.</b></span>
@@ -62,19 +58,20 @@
                     </div>
                     <br />
                     <div class="row">
-                        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col col-lg-3 col-md-4 col-sm-12 col-xs-12">
                             <label for="TipoPessoaId" class="obrigatorio">Tipo Pessoa</label>
                             <div class="form-group form-float">
                                 @Html.DropDownListFor(model => model.TipoPessoaId, Model.SelectListItemListaTipoPessoa, "Selecione..", new { @class = "form-control consulta", @Id = "TipoPessoaId" })
+                                <span class="informacao">Selecione o tipo para liberar o cadastro.</span>
                             </div>
                         </div>
-                        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col col-lg-3 col-md-4 col-sm-12 col-xs-12">
                             <label for="Nacional" class="obrigatorio">Nacional</label>
                             <div class="form-group">
                                 @Html.EnumDropDownListFor(model => model.Nacional, "Selecione..", new { @class = "form-control consulta", @Id = "Nacional" })
                             </div>
                         </div>
-                        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col col-lg-3 col-md-4 col-sm-12 col-xs-12">
                             <div class="form-group form-float">
                                 <br />
                                 <div class="form-line">

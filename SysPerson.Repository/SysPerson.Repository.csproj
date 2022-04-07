@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202204062340406_RemoverColunaAtivaAdicionarColunaSituacaoPessoa.designer.cs">
       <DependentUpon>202204062340406_RemoverColunaAtivaAdicionarColunaSituacaoPessoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204070227014_AdicionarColunaEmailPrincipalEmpresa.cs" />
+    <Compile Include="Migrations\202204070227014_AdicionarColunaEmailPrincipalEmpresa.designer.cs">
+      <DependentUpon>202204070227014_AdicionarColunaEmailPrincipalEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204062340406_RemoverColunaAtivaAdicionarColunaSituacaoPessoa.resx">
       <DependentUpon>202204062340406_RemoverColunaAtivaAdicionarColunaSituacaoPessoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204070227014_AdicionarColunaEmailPrincipalEmpresa.resx">
+      <DependentUpon>202204070227014_AdicionarColunaEmailPrincipalEmpresa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -37,6 +37,8 @@ namespace SysPerson.App.Models.Pessoa
 
         public string EmailPrincipal { get; set; }
 
+        public string EmailPrincipalEmpresa { get; set; }
+
         public string Profissao { get; set; }
 
         public string TelefonePrincipal { get; set; }
@@ -61,6 +63,8 @@ namespace SysPerson.App.Models.Pessoa
 
         public string SituacaoPessoaDescricao { get; set; }
 
+        public string DataConstituicao { get; set; }
+
         public decimal QuantidadeQuota { get; set; }
 
         public decimal ValorQuota { get; set; }
@@ -69,7 +73,7 @@ namespace SysPerson.App.Models.Pessoa
 
         public bool Ativa { get; set; }
 
-        public string DataConstituicao { get; set; }
+        public bool BloqueiaCampos { get; set; }
 
         public NacionalEnum Nacional { get; set; }
 

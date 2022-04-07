@@ -5,9 +5,9 @@ namespace SysPerson.App.Helpers
 {
     public static class Botoes
     {
-        public static MvcHtmlString Salvar(this HtmlHelper helper)
+        public static MvcHtmlString Salvar(this HtmlHelper helper, bool disabled = false)
         {
-            return MvcHtmlString.Create("<button type='submit' for='saveb' class='btn btn-lg bg-teal waves-effect waves-float' >SALVAR</ button>");
+            return MvcHtmlString.Create($"<button type='submit' for='saveb' class='btn btn-lg bg-teal waves-effect waves-float' {(disabled ? "disabled" : "")}>SALVAR</ button>");
         }
 
         public static MvcHtmlString SalvarNovo(this HtmlHelper helper)

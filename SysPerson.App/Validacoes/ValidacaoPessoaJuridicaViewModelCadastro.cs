@@ -11,8 +11,8 @@ namespace SysPerson.App.Validacoes
             RuleFor(pessoa => pessoa.RazaoSocial).NotEmpty();
             RuleFor(pessoa => pessoa.TipoEmpresaPjId).NotNull();
             RuleFor(pessoa => pessoa.PorteId).NotNull();
-            RuleFor(pessoa => pessoa.TelefonePrincipal).NotEmpty();
-            RuleFor(pessoa => pessoa.EmailPrincipal).NotEmpty();
+            RuleFor(pessoa => pessoa.TelefonePrincipalEmpresa).NotEmpty();
+            RuleFor(pessoa => pessoa.EmailPrincipalEmpresa).NotEmpty();
             RuleFor(pessoa => pessoa.CapitalSocial).NotEmpty().GreaterThan(0);
         }
     }

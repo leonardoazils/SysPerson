@@ -31,6 +31,8 @@ namespace SysPerson.Domain.Entities
 
         public string EmailPrincipal { get; set; }
 
+        public string EmailPrincipalEmpresa { get; set; }
+
         public string Profissao { get; set; }
 
         public string TelefonePrincipal { get; set; }

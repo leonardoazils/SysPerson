@@ -6,7 +6,7 @@
             <div class="form-group form-float">
                 <br />
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.Cnpj, new { @class = "form-control cnpj", @maxlength = "18" })
+                    @Html.TextBoxFor(model => model.Cnpj, new { @class = "form-control cnpj", @maxlength = "18", @readonly = Model.BloqueiaCampos ? "readonly" : "" })
                     <label class="form-label obrigatorio">CNPJ</label>
                 </div>
             </div>
@@ -14,7 +14,7 @@
         <div class="col col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <label class="control-label obrigatorio">Tipo Empresa</label>
             <div class="form-group">
-                @Html.DropDownListFor(model => model.TipoEmpresaPjId, Model.SelectListItemListaTipoEmpresaPj, "Selecione..", new { @class = "form-control consulta", @Id = "TipoEmpresaPjId" })
+                @Html.DropDownListFor(model => model.TipoEmpresaPjId, Model.SelectListItemListaTipoEmpresaPj, "Selecione..", new { @class = "form-control consulta", @disabled = Model.BloqueiaCampos ? "disabled" : "", @Id = "TipoEmpresaPjId" })
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-group form-float">
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.RazaoSocial, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.RazaoSocial, new { @class = "form-control", @readonly = Model.BloqueiaCampos ? "readonly" : "" })
                     <label class="form-label obrigatorio">Razão Social</label>
                 </div>
             </div>
@@ -30,7 +30,7 @@
         <div class="col col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="form-group form-float">
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.NomeFantasia, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.NomeFantasia, new { @class = "form-control", @readonly = Model.BloqueiaCampos ? "readonly" : "" })
                     <label class="form-label obrigatorio">Nome Fantasia</label>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             <div class="form-group form-float">
                 <br/>
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.DataConstituicao, new { @class = "datepicker form-control" })
+                    @Html.TextBoxFor(model => model.DataConstituicao, new { @class = "datepicker form-control", @disabled = Model.BloqueiaCampos ? "disabled" : "" })
                     <label class="form-label">Data Constituição</label>
                 </div>
             </div>
@@ -49,15 +49,15 @@
         <div class="col col-lg-3 col-md-6 col-sm-12 col-xs-12">
             <label class="control-label obrigatorio">Porte</label>
             <div class="form-group">
-                @Html.DropDownListFor(model => model.PorteId, Model.SelectListItemListaPorte, "Selecione..", new { @class = "form-control consulta", @Id = "PorteId" })
+                @Html.DropDownListFor(model => model.PorteId, Model.SelectListItemListaPorte, "Selecione..", new { @class = "form-control consulta", @disabled = Model.BloqueiaCampos ? "disabled" : "", @Id = "PorteId" })
             </div>
         </div>
         <div class="col col-lg-3 col-md-6 col-sm-12 col-xs-12">
             <div class="form-group form-float">
                 <br/>
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.TelefonePrincipalEmpresa, new { @class = "form-control telefone" })
-                    <label class="form-label">Fone 1</label>
+                    @Html.TextBoxFor(model => model.TelefonePrincipalEmpresa, new { @class = "form-control telefone", @readonly = Model.BloqueiaCampos ? "readonly" : "" })
+                    <label class="form-label obrigatorio">Fone 1</label>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="form-group form-float">
                 <br />
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.TelefoneSecundarioEmpresa, new { @class = "form-control telefone" })
+                    @Html.TextBoxFor(model => model.TelefoneSecundarioEmpresa, new { @class = "form-control telefone", @readonly = Model.BloqueiaCampos ? "readonly" : "" })
                     <label class="form-label">Fone 2</label>
                 </div>
             </div>
@@ -91,7 +91,7 @@
         <div class="col col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group form-float">
                 <div class="form-line">
-                    @Html.TextBoxFor(model => model.EmailPrincipal, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.EmailPrincipalEmpresa, new { @class = "form-control" })
                     <label class="form-label">Email Princípal</label>
                 </div>
             </div>

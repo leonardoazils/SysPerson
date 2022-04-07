@@ -82,14 +82,28 @@ namespace SysPerson.App.Controllers
 
         private bool ValidarPreenchimentoPessoaFisica(PessoaFormularioViewModel model)
         {
-            var validador = new ValidacaoPessoaFisicaViewModelCadastro();
-            return validador.Validate(model).IsValid;
+            try
+            {
+                var validador = new ValidacaoPessoaFisicaViewModelCadastro();
+                return validador.Validate(model).IsValid;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private bool ValidarPreenchimentoPessoaJuridica(PessoaFormularioViewModel model)
         {
-            var validador = new ValidacaoPessoaJuridicaViewModelCadastro();
-            return validador.Validate(model).IsValid;
+            try
+            {
+                var validador = new ValidacaoPessoaJuridicaViewModelCadastro();
+                return validador.Validate(model).IsValid;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private Pessoa MontarEntidadePessoaFisica(PessoaFormularioViewModel model)
@@ -135,18 +149,21 @@ namespace SysPerson.App.Controllers
                 if (model.Id != Guid.Empty)
                     pessoa.Id = model.Id;
 
+                pessoa.TipoPessoaId = model.TipoPessoaId;
                 pessoa.TipoEmpresaPjId = model.TipoEmpresaPjId;
                 pessoa.PorteId = model.PorteId;
                 pessoa.CaracterizacaoCapitalId = model.CaracterizacaoCapitalId;
+                pessoa.Nacional = model.Nacional;
                 pessoa.Cnpj = model.Cnpj;
                 pessoa.RazaoSocial = model.RazaoSocial;
                 pessoa.NomeFantasia = model.NomeFantasia;
                 pessoa.DataConstituicao = !string.IsNullOrEmpty(model.DataConstituicao) ? DateTime.Parse(model.DataConstituicao) : (DateTime?)null;
+                pessoa.DataUltimaAtualizacao = DateTime.Now;
                 pessoa.TelefonePrincipalEmpresa = model.TelefonePrincipalEmpresa;
                 pessoa.TelefoneSecundarioEmpresa = model.TelefoneSecundarioEmpresa;
                 pessoa.TelefoneReservaEmpresa = model.TelefoneReservaEmpresa;
                 pessoa.Website = model.Website;
-                pessoa.EmailPrincipal = model.EmailPrincipal;
+                pessoa.EmailPrincipalEmpresa = model.EmailPrincipalEmpresa;
                 pessoa.QuantidadeQuota = model.QuantidadeQuota;
                 pessoa.ValorQuota = model.ValorQuota;
                 pessoa.CapitalSocial = model.CapitalSocial;
@@ -203,9 +220,13 @@ namespace SysPerson.App.Controllers
                 modelo.Nascimento = pessoa.Nascimento.Value.ToShortDateString();
                 modelo.Nacionalidade = pessoa.Nacionalidade;
                 modelo.SituacaoPessoa = pessoa.SituacaoPessoa;
+                modelo.BloqueiaCampos = true;
 
                 if (pessoa.SituacaoPessoa == SituacaoPessoaEnum.EmElaboracao)
+                { 
                     modelo.SituacaoPessoaDescricao = "Em Elaboração";
+                    modelo.BloqueiaCampos = false;
+                }
                 else if (pessoa.SituacaoPessoa == SituacaoPessoaEnum.Ativado)
                     modelo.SituacaoPessoaDescricao = "Ativado";
                 else
@@ -226,25 +247,32 @@ namespace SysPerson.App.Controllers
                 var modelo = new PessoaFormularioViewModel();
 
                 modelo.Id = pessoa.Id;
+                modelo.TipoPessoaId = pessoa.TipoPessoaId;
                 modelo.TipoEmpresaPjId = pessoa.TipoEmpresaPjId.HasValue ? pessoa.TipoEmpresaPjId.Value : Guid.Empty;
                 modelo.PorteId = pessoa.PorteId.HasValue ? pessoa.PorteId.Value : Guid.Empty;
                 modelo.CaracterizacaoCapitalId = pessoa.CaracterizacaoCapitalId.HasValue ? pessoa.CaracterizacaoCapitalId.Value : Guid.Empty;
+                modelo.Nacional = pessoa.Nacional;
                 modelo.Cnpj = pessoa.Cnpj;
                 modelo.RazaoSocial = pessoa.RazaoSocial;
                 modelo.NomeFantasia = pessoa.NomeFantasia;
                 modelo.DataConstituicao = pessoa.DataConstituicao.HasValue ? pessoa.DataConstituicao.Value.ToShortDateString() : null;
+                modelo.DataUltimaAtualizacao = pessoa.DataUltimaAtualizacao.Value.ToShortDateString();
                 modelo.TelefonePrincipalEmpresa = pessoa.TelefonePrincipalEmpresa;
                 modelo.TelefoneSecundarioEmpresa = pessoa.TelefoneSecundarioEmpresa;
                 modelo.TelefoneReservaEmpresa = pessoa.TelefoneReservaEmpresa;
                 modelo.Website = pessoa.Website;
-                modelo.EmailPrincipal = pessoa.EmailPrincipal;
+                modelo.EmailPrincipalEmpresa = pessoa.EmailPrincipalEmpresa;
                 modelo.QuantidadeQuota = pessoa.QuantidadeQuota.HasValue ? pessoa.QuantidadeQuota.Value : decimal.Zero;
                 modelo.ValorQuota = pessoa.ValorQuota.HasValue ? pessoa.ValorQuota.Value : decimal.Zero;
                 modelo.CapitalSocial = pessoa.CapitalSocial.HasValue ? pessoa.CapitalSocial.Value : decimal.Zero;
                 modelo.SituacaoPessoa = pessoa.SituacaoPessoa;
+                modelo.BloqueiaCampos = true;
 
                 if (pessoa.SituacaoPessoa == SituacaoPessoaEnum.EmElaboracao)
+                { 
                     modelo.SituacaoPessoaDescricao = "Em Elaboração";
+                    modelo.BloqueiaCampos = false;
+                }
                 else if (pessoa.SituacaoPessoa == SituacaoPessoaEnum.Ativado)
                     modelo.SituacaoPessoaDescricao = "Ativado";
                 else
@@ -273,21 +301,24 @@ namespace SysPerson.App.Controllers
                     modelo.Id = entidade.Id;
                     modelo.CpfCnpj = entidade.TipoPessoaId == PESSOA_FISICA ? entidade.Cpf : entidade.Cnpj;
                     modelo.NomeRazaoSocial = entidade.TipoPessoaId == PESSOA_FISICA ? entidade.Nome : entidade.RazaoSocial;
-                    modelo.TipoPessoa = entidade.TipoPessoaId == PESSOA_FISICA ? "Pessoa Física" : "Pessoa Júridica";
+                    modelo.TipoPessoa = entidade.TipoPessoaId == PESSOA_FISICA ? "Pessoa Física" : "Pessoa Jurídica";
                     modelo.Nacional = entidade.Nacional == NacionalEnum.Sim ? "Sim" : "Não";
                     modelo.Porte = entidade.PorteId.HasValue ? portes.Where(p => p.Id == entidade.PorteId.Value).Select(s => s.Descricao).FirstOrDefault() : "N/A";
                     modelo.SituacaoPessoa = entidade.SituacaoPessoa;
                     modelo.PermiteExcluir = false;
 
                     if (entidade.SituacaoPessoa == SituacaoPessoaEnum.EmElaboracao)
-                    { 
+                    {
                         modelo.SituacaoPessoaDescricao = "Em Elaboração";
                         modelo.PermiteExcluir = true;
                     }
                     else if (entidade.SituacaoPessoa == SituacaoPessoaEnum.Ativado)
                         modelo.SituacaoPessoaDescricao = "Ativado";
                     else
+                    {
                         modelo.SituacaoPessoaDescricao = "Desativado";
+                        modelo.PermiteExcluir = true;
+                    }
 
                     pessoas.Add(modelo);
                 }
@@ -313,7 +344,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return View(new PessoaViewModelIndex() { Pessoas = new List<PessoaViewModel>() });
             }
         }
 
@@ -321,11 +354,13 @@ namespace SysPerson.App.Controllers
         {
             try
             {
-                return View("Formulario", CarregarDadosCadastro(new PessoaFormularioViewModel() { SituacaoPessoa = SituacaoPessoaEnum.EmElaboracao, SituacaoPessoaDescricao = "Em Elaboração" }));
+                return View("Formulario", CarregarDadosCadastro(new PessoaFormularioViewModel() { SituacaoPessoa = SituacaoPessoaEnum.EmElaboracao, SituacaoPessoaDescricao = "Em Elaboração", BloqueiaCampos = false }));
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return RedirectToAction("Index", "Pessoa");
             }
         }
 
@@ -353,7 +388,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return View("Formulario", CarregarDadosCadastro(model));
             }
         }
 
@@ -373,7 +410,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return RedirectToAction("Index", "Pessoa");
             }
         }
 
@@ -401,7 +440,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return View("Formulario", CarregarDadosCadastro(model));
             }
         }
 
@@ -421,7 +462,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return RedirectToAction("Index", "Pessoa");
             }
         }
 
@@ -441,7 +484,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return RedirectToAction("Index", "Pessoa");
             }
         }
 
@@ -457,7 +502,9 @@ namespace SysPerson.App.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["error"] = $"Erro ao processar os dados: {ex.Message}";
+
+                return RedirectToAction("Index", "Pessoa");
             }
         }
     }
