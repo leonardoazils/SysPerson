@@ -24,15 +24,19 @@ Estrutura do Projeto:
 Utilizei essa estrutura de projeto pois acredito que as responsabilidades ficam bem separadas facilitando para quem está programando, neste caso o desafio possuí apenas
 um cadastro o que deixa os projetos sem muita implementação, mas eu quis mostrar como fica mais fácil escalar caso fosse ter novas funcionalidades.
 
+Foi criado uma pasta chamada "Seeders" dentro do projeto "SysPerson.Framework" e lá coloquei classes que emulam as tabelas auxiliares do cadastro de pessoa.
+O conceito desse nome no Migration seria para criar tabelas já com dados carregados por padrão, mas optei por usar a mesma nomenclatura nesse caso para facilitar o entendimento.
+
 OBS: Não é necessário fazer o download de nenhuma biblioteca para compilar a aplicação pois os arquivos javascript e css estão adicionados na mesma.
 
-Para utilizar a aplicação basta realizar o download dos fontes (clone) e abrir a solução no Visual Studio.
+Para utilizar a aplicação basta realizar o download dos fontes (clone) e abrir a solução no Visual Studio. O banco de dados está ligado ao projeto portanto já está
+criado.
+
+Caso queira rodar um novo Migration ou o banco de dados não foi criado por algum motivo basta seguir o seguinte passo a passo:
 
 - Vá para o menu superior e abra: Exibir / Outras Janelas / Console do Gerenciador de Pacotes.
 - Na janela que irá abrir selecione o projeto SysPerson.Repository.
 - Digite o comando Add-Migration <nome-do-migration>.
 - Quando o processo for concluído digite: Update-Database.
-  
-  Com isso o banco de dados deve ter sido criado na aba lateral do Visual Studio chamada: Gerenciador de Servidores / Conexões de dados.
   
   

@@ -17,8 +17,6 @@ namespace SysPerson.Domain.Entities
 
         public Guid? CaracterizacaoCapitalId { get; set; }
 
-        public int TipoPessoaId { get; set; }
-
         public string Cpf { get; set; }
 
         public string Cnpj { get; set; }
@@ -56,6 +54,8 @@ namespace SysPerson.Domain.Entities
         public decimal? ValorQuota { get; set; }
 
         public decimal? CapitalSocial { get; set; }
+
+        public int TipoPessoaId { get; set; }
 
         public DateTime? DataConstituicao { get; set; }
 
