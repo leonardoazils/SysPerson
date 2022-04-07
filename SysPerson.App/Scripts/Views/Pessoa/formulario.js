@@ -106,12 +106,7 @@ $(document).ready(function () {
         width: "100%"
     });
 
-    if ($("#Id").val() == "00000000-0000-0000-0000-000000000000") {
-        $("#container-pessoa-juridica").addClass("hidden");
-        $("#container-pessoa-fisica").addClass("hidden");
-    } else {
-        showForm();
-    }
+    showForm();
     
     if ($("#BloqueiaCampos").val() == "True") {
         bloqueiaCamposPessoaFisica();
@@ -123,6 +118,7 @@ $(document).ready(function () {
     }
 
     $("#TipoPessoaId").on("change", function (e) {
+        debugger;
         showForm();
     });
 });
