@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\NacionalEnum.cs" />
+    <Compile Include="Enums\SituacaoPessoaEnum.cs" />
     <Compile Include="Extensions\CaracterizacaoCapitalExtension.cs" />
     <Compile Include="Extensions\EstadoCivilExtension.cs" />
     <Compile Include="Extensions\GeneroExtension.cs" />

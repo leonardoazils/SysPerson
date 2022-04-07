@@ -184,7 +184,6 @@
     <Content Include="Scripts\Layout\waves.js" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Pessoa\Index.cshtml" />
-    <Content Include="Views\Pessoa\_Informacoes.cshtml" />
     <Content Include="Views\Pessoa\Formulario.cshtml" />
     <Content Include="Views\Pessoa\_PessoaJuridica.cshtml" />
     <Content Include="Views\Pessoa\_PessoaFisica.cshtml" />

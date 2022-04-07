@@ -13,7 +13,7 @@ namespace SysPerson.Framework.Extensions
             return listaEntidades.OrderBy(x => x.Descricao).Select(x => new SelectListItem { Text = x.Descricao, Value = x.Id.ToString() });
         }
 
-        public static IEnumerable<SelectListItem> DropDownList(this IEnumerable<TipoEmpresa> listaEntidades, Guid idSelecionado)
+        public static IEnumerable<SelectListItem> DropDownList(this IEnumerable<TipoEmpresaPj> listaEntidades, Guid idSelecionado)
         {
             return listaEntidades.OrderBy(x => x.Descricao).Select(x => new SelectListItem { Text = x.Descricao, Value = x.Id.ToString(), Selected = x.Id.Equals(idSelecionado) });
         }

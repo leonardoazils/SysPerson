@@ -21,6 +21,8 @@ namespace SysPerson.App.Models.Pessoa
 
         public Guid CaracterizacaoCapitalId { get; set; }
 
+        public SituacaoPessoaEnum SituacaoPessoa { get; set; }
+
         public int TipoPessoaId { get; set; }
 
         public string Cpf { get; set; }
@@ -56,6 +58,8 @@ namespace SysPerson.App.Models.Pessoa
         public string Website { get; set; }
 
         public string DataUltimaAtualizacao { get; set; }
+
+        public string SituacaoPessoaDescricao { get; set; }
 
         public decimal QuantidadeQuota { get; set; }
 

@@ -1,4 +1,21 @@
-﻿$(document).ready(function () {
+﻿function showForm() {
+    let tipoPessoa = $("#TipoPessoaId").val();
+
+    if (tipoPessoa == 1) {
+        $("#container-pessoa-juridica").addClass("hidden");
+        $("#container-pessoa-fisica").removeClass("hidden");
+    }
+    else if (tipoPessoa == 2) {
+        $("#container-pessoa-fisica").addClass("hidden");
+        $("#container-pessoa-juridica").removeClass("hidden");
+    }
+    else {
+        $("#container-pessoa-juridica").addClass("hidden");
+        $("#container-pessoa-fisica").addClass("hidden");
+    } 
+}
+
+$(document).ready(function () {
     var urlBase = window.location.href.toLowerCase().split("/aplicacao/").length > 1 ? "/aplicacao" : "";
 
     $('.telefone').mask('(99) 9999?9-9999');
@@ -15,20 +32,14 @@
         width: "100%"
     });
 
-    $("#TipoPessoaId").on("change", function (e) {
-        let tipoPessoa = $("#TipoPessoaId").val();
+    if ($("#Id").val() == "00000000-0000-0000-0000-000000000000") {
+        $("#container-pessoa-juridica").addClass("hidden");
+        $("#container-pessoa-fisica").addClass("hidden");
+    } else {
+        showForm();
+    }
 
-        if (tipoPessoa == 1) {
-            $("#container-pessoa-juridica").addClass("hidden");
-            $("#container-pessoa-fisica").removeClass("hidden");
-        }
-        else if (tipoPessoa == 2) {
-            $("#container-pessoa-fisica").addClass("hidden");
-            $("#container-pessoa-juridica").removeClass("hidden");
-        }
-        else {
-            $("#container-pessoa-juridica").addClass("hidden");
-            $("#container-pessoa-fisica").addClass("hidden");
-        } 
+    $("#TipoPessoaId").on("change", function (e) {
+        showForm();
     });
 });

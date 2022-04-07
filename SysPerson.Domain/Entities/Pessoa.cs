@@ -55,8 +55,6 @@ namespace SysPerson.Domain.Entities
 
         public decimal? CapitalSocial { get; set; }
 
-        public bool Ativa { get; set; }
-
         public DateTime? DataConstituicao { get; set; }
 
         public DateTime? Nascimento { get; set; }
@@ -64,5 +62,7 @@ namespace SysPerson.Domain.Entities
         public DateTime? DataUltimaAtualizacao { get; set; }
 
         public NacionalEnum Nacional { get; set; }
+
+        public SituacaoPessoaEnum SituacaoPessoa { get; set; }
     }
 }

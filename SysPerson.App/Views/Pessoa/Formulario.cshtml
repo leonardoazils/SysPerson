@@ -29,7 +29,7 @@
                 @Html.HiddenFor(model => model.Id)
                 <div class="header">
                     <h2>
-                        @Html.Voltar("/Pessoa/Index") Pessoa
+                        @Html.Voltar("/Pessoa/Index") Pessoa - @Model.SituacaoPessoaDescricao
                     </h2>
                     <div class="hidden-sm hidden-xs">
                         <small><b>Cadastre pessoas para que possa utilizar no sistema.</b></small>
@@ -54,6 +54,7 @@
                 </div>
                 <div class="body">
                     @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.SituacaoPessoa)
                     <div class="row">
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <span><b>- Campos marcados com <span class="obrigatorio"></span> são obrigatórios.</b></span>
@@ -77,18 +78,9 @@
                             <div class="form-group form-float">
                                 <br />
                                 <div class="form-line">
-                                    @Html.TextBoxFor(model => model.DataUltimaAtualizacao, new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.DataUltimaAtualizacao, new { @class = "form-control", @readonly = "readonly" })
                                     <label class="form-label">Dt. Últ. Atualização</label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <label for="Ativa"></label>
-                            <div class="demo-checkbox padding-label-checkbox-modal">
-                                <input type="checkbox" id="Ativa" checked="@Model.Ativa" value="true" name="Ativa" class="filled-in chk-col-orange">
-                                <label for="Ativa">
-                                    Ativa
-                                </label>
                             </div>
                         </div>
                     </div>
